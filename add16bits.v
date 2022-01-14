@@ -1,11 +1,11 @@
 `include "addbit.v"
 
-module add16bits (a, b, s, cout);
+module add16bits (a, b, s, overflow);
 
     input [15:0] a, b; // input 1, 2, and carry in
     output [15:0] s; // output and carry
-    output cout; 
-    wire carry[14:0]; 
+    output overflow; 
+    wire carry[15:0]; 
 
     addbit dig0 (a[0], b[0], 1'b0, carry[0], s[0]);
     addbit dig1 (a[1], b[1], carry[0], carry[1], s[1]);
@@ -22,6 +22,8 @@ module add16bits (a, b, s, cout);
     addbit dig12 (a[12], b[12], carry[11], carry[12], s[12]);
     addbit dig13 (a[13], b[13], carry[12], carry[13], s[13]);
     addbit dig14 (a[14], b[14], carry[13], carry[14], s[14]);
-    addbit dig15 (a[15], b[15], carry[14], cout, s[15]);
+    addbit dig15 (a[15], b[15], carry[14], carry[15], s[15]);
+
+    xor(overflow, carry[14], carry[15]);
 
 endmodule
