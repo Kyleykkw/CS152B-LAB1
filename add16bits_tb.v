@@ -5,9 +5,9 @@ module add16bits_tb;
 
     reg [15:0] a, b; // data
     wire [15:0] s; // sum
-    wire cout; // carry
+    wire overflow; //  overflow
 
-add16bits uut(a, b, s, cout);
+add16bits uut(a, b, s, overflow);
 
 initial begin
     
