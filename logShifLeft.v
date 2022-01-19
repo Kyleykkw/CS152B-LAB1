@@ -22,7 +22,7 @@ module logShifLeft(a, b, s, cout);
 
 	input [15:0] a, b; // Inputs A and B.
 	output wire [15:0] s;	// Output s.
-	output wire cout; 	// cout == 1 when shift changes the sign of the number.
+	output wire cout; 
 	
 	integer i, j;
 	reg[15:0] preShiftedInput, nextShiftedInput;
@@ -38,6 +38,6 @@ module logShifLeft(a, b, s, cout);
 	end
 	
 	assign s = nextShiftedInput;
-	assign cout = s[15] & ~a[15] | ~s[15] & a[15];
+	assign cout = 0;
 	
 endmodule

@@ -14,12 +14,12 @@ initial begin
     $dumpfile("test_tb.vcd");
     $dumpvars(0, add16bits_tb);
 
-    a = 16'h1234;
-    b = 16'h4321;
+    a = 16'h7fff;
+    b = 16'h7fff;
     #20
 
-    a = 16'habcd;
-    b = 16'h9943;
+    a = 16'h8000;
+    b = 16'h8000;
     #20
 
     $display("test complete");
