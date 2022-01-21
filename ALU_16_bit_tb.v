@@ -174,6 +174,11 @@ initial begin
     operation = 4'b1001;
     #20
 
+    a = 16'hf345; // -3259
+    b = 16'hf333; // -3277
+    operation = 4'b1001;
+    #20
+
     $display("test complete");
 end
 
