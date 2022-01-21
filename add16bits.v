@@ -6,6 +6,7 @@ module add16bits (a, b, s, overflow);
     output [15:0] s; // output and carry
     output overflow; 
     wire carry[15:0]; 
+    wire ab, as;
 
     addbit dig0 (a[0], b[0], 1'b0, carry[0], s[0]);
     addbit dig1 (a[1], b[1], carry[0], carry[1], s[1]);
@@ -24,6 +25,9 @@ module add16bits (a, b, s, overflow);
     addbit dig14 (a[14], b[14], carry[13], carry[14], s[14]);
     addbit dig15 (a[15], b[15], carry[14], carry[15], s[15]);
 
-    xor(overflow, carry[14], carry[15]);
+
+    xnor(ab, a[15], b[15]);
+    xor(as, a[15], s[15]);
+    and(overflow, ab, as);
 
 endmodule

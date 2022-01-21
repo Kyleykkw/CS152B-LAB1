@@ -20,11 +20,11 @@ module alu16bit (a, b, operation, S, overflow, zero);
     wire [255:0] mux_input;
     wire [15:0] overflows;
 
-    // addition
-    add16bits add(a, b, ADD, overflows[0]); 
-
     // subtraction
-    sub16bits sub(a, b, SUB, overflows[1]);
+    sub16bits sub(a, b, SUB, overflows[0]);
+
+    // addition
+    add16bits add(a, b, ADD, overflows[1]); 
 
     // bitwise or
     or(OR[0], a[0], b[0]);
