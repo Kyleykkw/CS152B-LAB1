@@ -3,7 +3,12 @@
 
 module mux_16x16_to_16_tb;
 
-    reg [255:0] In; 
+    reg [16:0] In0; 
+    reg [16:0] In0; 
+    reg [16:0] In0; 
+    reg [16:0] In0; 
+    reg [16:0] In0; 
+    
     reg [3:0] S; 
     wire [15:0] out; 
 

@@ -17,7 +17,7 @@ module alu16bit (a, b, operation, S, overflow, zero);
     output overflow, zero;
 
     wire [15:0] SUB, ADD, OR, AND, DEC, INC, INV, ASL, ASR, LSL, LSR, LEQ; // for calculating carry out
-    wire [255:0] mux_input;
+    //wire [255:0] mux_input;
     wire [15:0] overflows;
 
     // subtraction
@@ -101,11 +101,11 @@ module alu16bit (a, b, operation, S, overflow, zero);
     assign overflows[15] = 0;
 
     // use mux on results
-    assign mux_input = {SUB, ADD, OR, AND, DEC, INC, INV, 16'h0, LSL, LEQ, LSR, 16'h0, ASL, 16'h0, ASR, 16'h0};
-    mux_16x16_to_16 mux_s (S, mux_input, operation);
+    //assign mux_input = {SUB, ADD, OR, AND, DEC, INC, INV, 16'h0, LSL, LEQ, LSR, 16'h0, ASL, 16'h0, ASR, 16'h0};
+    mux_16x16_to_16 mux_s (S, SUB, ADD, OR, AND, DEC, INC, INV, 16'h0, LSL, LEQ, LSR, 16'h0, ASL, 16'h0, ASR, 16'h0, operation);
 
     // use mux on overflow
-    mux_16_to_1 mux_of (overflow, overflows, operation);
+    mux_16_to_1 mux_of (overflow, overflows[0], overflows[1], overflows[2], overflows[3], overflows[4], overflows[5], overflows[6], overflows[7], overflows[8], overflows[9], overflows[10], overflows[11], overflows[12], overflows[13], overflows[14], overflows[15], operation);
 
     // calculate zero
     nor(zero, S[0], S[1], S[2], S[3], S[4], S[5], S[6], S[7], S[8], S[9], S[10], S[11], S[12], S[13], S[14], S[15]);
