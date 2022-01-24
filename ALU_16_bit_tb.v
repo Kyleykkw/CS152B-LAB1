@@ -110,14 +110,28 @@ initial begin
     operation = 4'b0100;
     #20
 
+    // with overflow
+    a = 16'h8000;
+    operation = 4'b0100;
+    #20
+
     // increment
     a = 16'h1234;
     operation = 4'b0101;
     #20
   
+    // with overflow
+    a = 16'h7fff;
+    operation = 4'b0101;
+    #20
 
     // invert
     a = 16'hffff;
+    operation = 4'b0110;
+    #20
+
+    // invert with overflow
+    a = 16'h8000;
     operation = 4'b0110;
     #20
   
@@ -171,6 +185,11 @@ initial begin
 
     a = 16'h3;
     b = 16'h1;
+    operation = 4'b1001;
+    #20
+
+    a = 16'hf345; // -3259
+    b = 16'hf333; // -3277
     operation = 4'b1001;
     #20
 
